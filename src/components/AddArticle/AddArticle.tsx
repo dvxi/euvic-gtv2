@@ -13,9 +13,9 @@ type Props = {
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
-  age: Yup.number().required("Age is required"),
-  birthdate: Yup.string().required("Birthdate is required"),
-  description: Yup.string().required("Description is required"),
+  age: Yup.number().integer().required("Age is required"),
+  birthdate: Yup.date().required("Birthdate is required"),
+  description: Yup.string().max(250),
 });
 
 export const AddArticle: React.FC<Props> = ({
@@ -35,6 +35,7 @@ export const AddArticle: React.FC<Props> = ({
     validationSchema: validationSchema,
     onSubmit: (values: IArticle) => {
       values.id !== -1 ? changeArticle(values) : saveArticle(values);
+      formik.resetForm();
     },
   });
 
@@ -75,7 +76,12 @@ export const AddArticle: React.FC<Props> = ({
         onSubmitCapture={formik.handleSubmit}
       >
         <Form.Item label="Name">
-          <Input id="name" placeholder="Name" onChange={formik.handleChange} />
+          <Input
+            id="name"
+            placeholder="Name"
+            onChange={formik.handleChange}
+            value={formik.values.name}
+          />
           {formik.touched.name && formik.errors.name ? (
             <div className="error">{formik.errors.name}</div>
           ) : null}
@@ -97,6 +103,11 @@ export const AddArticle: React.FC<Props> = ({
             placeholder="Birthdate"
             onChange={(date, dateString) =>
               formik.setFieldValue("birthdate", dateString)
+            }
+            value={
+              dayjs(formik.values.birthdate).isValid()
+                ? dayjs(formik.values.birthdate)
+                : undefined
             }
             // value={dayjs(formik.values.birthdate)}
           />

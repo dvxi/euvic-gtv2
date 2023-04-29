@@ -17,7 +17,6 @@ const Main = () => {
   const [editedArtice, setEditedArticle] = useState<IArticle | null>(null);
   const [pageSize, setPageSize] = useState<number>(10);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [loading, setLoading] = useState(false);
 
   //Redux
 
@@ -46,12 +45,23 @@ const Main = () => {
 
   //Table selection
 
-  const start = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-    }, 1000);
+  const deleteAllArticles = () => {
+    articles.forEach((article) => {
+      deleteArticle(article);
+    });
+    setSelectedRowKeys([]);
+  };
+
+  const deleteGroup = () => {
+    selectedRowKeys.forEach(
+      (key) => {
+        deleteArticle(
+          articles.find((article) => article.id === key) as IArticle
+        );
+      },
+      [selectedRowKeys, articles]
+    );
+    setSelectedRowKeys([]);
   };
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
@@ -93,12 +103,12 @@ const Main = () => {
             />
           ))} */}
           <Button
-            type="primary"
-            onClick={start}
+            danger
+            onClick={deleteGroup}
             disabled={!hasSelected}
-            loading={loading}
+            style={{ marginBottom: 16 }}
           >
-            Reload
+            Delete
           </Button>
           <span
             style={{
@@ -120,6 +130,7 @@ const Main = () => {
               title="Description"
               dataIndex="description"
               key="description"
+              ellipsis={true}
             />
             <Column
               title="Action"
@@ -129,7 +140,7 @@ const Main = () => {
                   <Button onClick={(e) => setEditedArticle(articles[id])}>
                     Edit
                   </Button>
-                  <Button onClick={(e) => deleteArticle(articles[id])}>
+                  <Button danger onClick={(e) => deleteArticle(articles[id])}>
                     Delete
                   </Button>
                 </Space>
@@ -154,6 +165,14 @@ const Main = () => {
               },
             ]}
           />
+          <Button
+            danger
+            type="primary"
+            onClick={deleteAllArticles}
+            style={{ margin: 16 }}
+          >
+            Delete all records
+          </Button>
           <h1>Add Article</h1>
           <AddArticle
             saveArticle={saveArticle}
