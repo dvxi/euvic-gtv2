@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 
 type Props = {
   saveArticle: (article: IArticle | any) => void;
+  changeArticle: (article: IArticle | any) => void;
   editedArtice: IArticle | null;
 };
 
@@ -17,12 +18,15 @@ const validationSchema = Yup.object().shape({
   description: Yup.string().required("Description is required"),
 });
 
-export const AddArticle: React.FC<Props> = ({ saveArticle, editedArtice }) => {
+export const AddArticle: React.FC<Props> = ({
+  saveArticle,
+  changeArticle,
+  editedArtice,
+}) => {
   // const [article, setArticle] = React.useState<IArticle | {}>();
-
   const formik = useFormik({
     initialValues: editedArtice || {
-      id: 3,
+      id: -1,
       name: "",
       age: 0,
       birthdate: "",
@@ -30,9 +34,22 @@ export const AddArticle: React.FC<Props> = ({ saveArticle, editedArtice }) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values: IArticle) => {
-      saveArticle(values);
+      values.id !== -1 ? changeArticle(values) : saveArticle(values);
     },
   });
+
+  React.useEffect(() => {
+    if (editedArtice !== null) {
+      formik.setFieldValue("id", editedArtice.id);
+      formik.setFieldValue("name", editedArtice.name);
+      formik.setFieldValue("age", editedArtice.age);
+      formik.setFieldValue(
+        "birthdate",
+        dayjs(editedArtice.birthdate).format("YYYY-MM-DD")
+      );
+      formik.setFieldValue("description", editedArtice.description);
+    }
+  }, [editedArtice]);
 
   // if (editedArtice !== null) {
   //   setArticle(editedArtice);

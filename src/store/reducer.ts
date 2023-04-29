@@ -26,7 +26,7 @@ const reducer = (
   switch (action.type) {
     case actionTypes.ADD_ARTICLE:
       const newArticle: IArticle = {
-        id: Math.random(),
+        id: state.articles.length + 1,
         name: action.article.name,
         age: action.article.age,
         birthdate: action.article.birthdate,
@@ -37,6 +37,7 @@ const reducer = (
         articles: state.articles.concat(newArticle),
       };
     case actionTypes.REMOVE_ARTICLE:
+      console.log(action.article.id);
       const updatedArticles = state.articles.filter(
         (article) => article.id !== action.article.id
       );
@@ -57,7 +58,9 @@ const reducer = (
       );
       return {
         ...state,
-        articles: updatedArticles2.concat(updatedArticle),
+        articles: updatedArticles2
+          .concat(updatedArticle)
+          .sort((a, b) => a.id - b.id),
       };
   }
   return state;

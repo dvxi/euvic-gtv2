@@ -32,7 +32,7 @@ const View = () => {
           <h1>View Page</h1>
           <Row gutter={[16, 24]}>
             {articles.map((article: IArticle) => (
-              <Col span={8}>
+              <Col span={6}>
                 <Card title={article.name}>
                   <p>Age: {article.age}</p>
                   <p>Birthdate: {article.birthdate}</p>
