@@ -1,27 +1,36 @@
-import * as actionTypes from './actionTypes';
+import * as actionTypes from "./actionTypes";
 
-export function addArticle(article : IArticle) {
-  const action : ArticleAction = {
+export function addArticle(article: IArticle) {
+  const action: ArticleAction = {
     type: actionTypes.ADD_ARTICLE,
-    article
-  }
+    article,
+  };
 
   return simulateHttpRequest(action);
 }
 
-export function removeArticle(article : IArticle) {
-  const action : ArticleAction = {
+export function editArticle(article: IArticle) {
+  const action: ArticleAction = {
+    type: actionTypes.EDIT_ARTICLE,
+    article,
+  };
+
+  return simulateHttpRequest(action);
+}
+
+export function removeArticle(article: IArticle) {
+  const action: ArticleAction = {
     type: actionTypes.REMOVE_ARTICLE,
-    article
-  }
+    article,
+  };
 
   return simulateHttpRequest(action);
 }
 
-export function simulateHttpRequest(action : ArticleAction) {
-  return (dispatch : DispatchType) => {
+export function simulateHttpRequest(action: ArticleAction) {
+  return (dispatch: DispatchType) => {
     setTimeout(() => {
       dispatch(action);
-    }, 500)
-  }
+    }, 500);
+  };
 }

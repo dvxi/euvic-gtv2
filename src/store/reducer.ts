@@ -1,43 +1,66 @@
-import * as actionTypes from './actionTypes';
+import * as actionTypes from "./actionTypes";
 
-const initialState : ArticleState = {
-    articles: [
-        {
-            id: 1,
-            title: "Post numer 1",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nisl aliquet nisl, eget al"
-        },
-        {
-            id: 2,
-            title: "Post numer 2",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nisl aliquet nisl, eget al"
-        },
-    ]
-}
+const initialState: ArticleState = {
+  articles: [
+    {
+      id: 1,
+      name: "Pierwszy",
+      age: 12,
+      birthdate: "2020-01-01",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    },
+    {
+      id: 2,
+      name: "Drugi",
+      age: 20,
+      birthdate: "2002-11-21",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    },
+  ],
+};
 
 const reducer = (
-    state: ArticleState = initialState,
-    action: ArticleAction
-) : ArticleState => {
-    switch(action.type) {
-        case actionTypes.ADD_ARTICLE:
-            const newArticle : IArticle = {
-                id: Math.random(),
-                title: action.article.title,
-                body: action.article.body
-            }
-            return {
-                ...state,
-                articles: state.articles.concat(newArticle),
-            }
-        case actionTypes.REMOVE_ARTICLE:
-            const updatedArticles = state.articles.filter( article => article.id !== action.article.id);
-            return {
-                ...state,
-                articles: updatedArticles
-            }
-    }
-    return state;
-}
+  state: ArticleState = initialState,
+  action: ArticleAction
+): ArticleState => {
+  switch (action.type) {
+    case actionTypes.ADD_ARTICLE:
+      const newArticle: IArticle = {
+        id: Math.random(),
+        name: action.article.name,
+        age: action.article.age,
+        birthdate: action.article.birthdate,
+        description: action.article.description,
+      };
+      return {
+        ...state,
+        articles: state.articles.concat(newArticle),
+      };
+    case actionTypes.REMOVE_ARTICLE:
+      const updatedArticles = state.articles.filter(
+        (article) => article.id !== action.article.id
+      );
+      return {
+        ...state,
+        articles: updatedArticles,
+      };
+    case actionTypes.EDIT_ARTICLE:
+      const updatedArticle: IArticle = {
+        id: action.article.id,
+        name: action.article.name,
+        age: action.article.age,
+        birthdate: action.article.birthdate,
+        description: action.article.description,
+      };
+      const updatedArticles2 = state.articles.filter(
+        (article) => article.id !== action.article.id
+      );
+      return {
+        ...state,
+        articles: updatedArticles2.concat(updatedArticle),
+      };
+  }
+  return state;
+};
 
 export default reducer;
