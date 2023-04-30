@@ -2,19 +2,19 @@
   "translation": {
     "menu": {
       "home": "Strona Główna",
-      "main": "Panel uzytkownika",
-      "view": "Przegladarka danych"
+      "main": "Panel użytkownika",
+      "view": "Przeglądarka danych"
     },
-    "title": "Euvic",
     "landing": {
-      "title": "Witaj w Euvic"
+      "title": "Witaj w Euvic",
+      "mainDescription": "Aby skorzystać z platformy przejdź na jedną z wyróżnionych w Menu stron. Na stronie \"Panel użytkownika\" znajdziesz narzedzia potrzebne do edycji danych.",
+      "viewDescription": "Aby przeglądac swoje dane skorzystaj z zakładki \"Przegladarka danych\". Znajdziesz tam pełne opisy użytkownikow."
     },
     "main": {
-      "title": "Panel",
-      "header": "Zarzadzaj danymi",
+      "header": "Zarządzaj danymi",
       "addArticle": "Dodaj dane",
       "table": {
-        "name": "Imie",
+        "name": "Imię",
         "age": "Wiek",
         "birthdate": "Data urodzenia",
         "description": "Opis",
@@ -22,20 +22,19 @@
       }
     },
     "form": {
-      "name": "Imie",
+      "name": "Imię",
       "age": "Wiek",
       "birthdate": "Data urodzenia",
       "description": "Opis"
     },
     "button": {
-      "deleteAll": "Usun wszystkie",
+      "deleteAll": "Usuń wszystkie",
       "addData": "Dodaj dane",
       "edit": "Edytuj",
-      "delete": "Usun"
+      "delete": "Usuń"
     },
     "view": {
-      "title": "Przegladarka danych",
-      "header": "Przegladaj dane"
+      "header": "Przeglądaj dane"
     }
   }
 }

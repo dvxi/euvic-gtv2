@@ -5,12 +5,11 @@
       "main": "Main",
       "view": "View Data"
     },
-    "title": "Euvic",
     "landing": {
-      "title": "Welcome to Euvic"
+      "mainDescription": "This is a simple application for managing your data. You can add, edit and delete your data.",
+      "viewDescription": "You can also view your data in the \"Data Browser\" tab. You will find full descriptions of users there."
     },
     "main": {
-      "title": "Main Page",
       "header": "Manage your data",
       "addArticle": "Add Data",
       "table": {
@@ -34,7 +33,6 @@
       "delete": "Delete"
     },
     "view": {
-      "title": "View Data",
       "header": "Explore your data"
     }
   }

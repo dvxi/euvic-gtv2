@@ -2,7 +2,7 @@ import { Layout, Col, Row, Card } from "antd";
 import { useSelector, shallowEqual } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const DataView = () => {
   const articles: readonly IArticle[] = useSelector(
@@ -14,9 +14,6 @@ const DataView = () => {
 
   return (
     <Layout className="site-layout">
-      <Header className="header">
-        <h1>{t("view.title")}</h1>
-      </Header>
       <Content className="content">
         <h1>{t("view.header")}</h1>
         <Row gutter={[16, 24]}>

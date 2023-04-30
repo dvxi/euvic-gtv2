@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { Layout, Table, Space, Button, Select } from "antd";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
-
 import { AddArticle } from "../../components";
 import {
   addArticle,
@@ -12,14 +11,15 @@ import { Dispatch } from "redux";
 import Column from "antd/es/table/Column";
 import { useTranslation } from "react-i18next";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const Main = () => {
   const [editedArtice, setEditedArticle] = useState<IArticle | null>(null);
   const [pageSize, setPageSize] = useState<number>(10);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
-  //Redux
+  const hasSelected = selectedRowKeys.length > 0;
+  const { t } = useTranslation();
 
   const articles: readonly IArticle[] = useSelector(
     (state: ArticleState) => state.articles,
@@ -43,7 +43,10 @@ const Main = () => {
     [dispatch]
   );
 
-  //Table selection
+  const handleDelete = (article: IArticle) => {
+    deleteArticle(article);
+    setSelectedRowKeys([]);
+  };
 
   const deleteAllArticles = () => {
     articles.forEach((article) => {
@@ -67,19 +70,14 @@ const Main = () => {
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
   };
+
   const rowSelection = {
     selectedRowKeys,
     onChange: onSelectChange,
   };
-  const hasSelected = selectedRowKeys.length > 0;
-
-  const { t } = useTranslation();
 
   return (
     <Layout className="site-layout">
-      <Header className="header">
-        <h1>{t("main.title")}</h1>
-      </Header>
       <Content className="content">
         <h1>{t("main.header")}</h1>
         <Button danger onClick={deleteGroup} disabled={!hasSelected}>
@@ -115,7 +113,7 @@ const Main = () => {
                 <Button onClick={(e) => setEditedArticle(articles[id])}>
                   {t("button.edit")}
                 </Button>
-                <Button danger onClick={(e) => deleteArticle(articles[id])}>
+                <Button danger onClick={(e) => handleDelete(articles[id])}>
                   {t("button.delete")}
                 </Button>
               </Space>

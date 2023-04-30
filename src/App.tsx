@@ -4,8 +4,6 @@ import { MenuHeader, Router } from "./components/";
 
 import "./i18n";
 
-const { Header } = Layout;
-
 const App: React.FC = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>

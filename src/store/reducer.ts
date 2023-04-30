@@ -1,4 +1,4 @@
-import * as actionTypes from "./actionTypes";
+import ActionTypes from "./actionTypes";
 import { INITIAL_STATE } from "../.const";
 
 const initialState: ArticleState = INITIAL_STATE;
@@ -8,7 +8,7 @@ const reducer = (
   action: ArticleAction
 ): ArticleState => {
   switch (action.type) {
-    case actionTypes.ADD_ARTICLE:
+    case ActionTypes.ADD_ARTICLE:
       const newArticle: IArticle = {
         id: state.articles.length + 1,
         name: action.article.name,
@@ -20,7 +20,7 @@ const reducer = (
         ...state,
         articles: state.articles.concat(newArticle),
       };
-    case actionTypes.REMOVE_ARTICLE:
+    case ActionTypes.REMOVE_ARTICLE:
       console.log(action.article.id);
       const updatedArticles = state.articles.filter(
         (article) => article.id !== action.article.id
@@ -29,7 +29,7 @@ const reducer = (
         ...state,
         articles: updatedArticles,
       };
-    case actionTypes.EDIT_ARTICLE:
+    case ActionTypes.EDIT_ARTICLE:
       const updatedArticle: IArticle = {
         id: action.article.id,
         name: action.article.name,

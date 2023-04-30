@@ -1,9 +1,9 @@
-import * as actionTypes from "./actionTypes";
+import ActionTypes from "./actionTypes";
 import { TIMEOUT_VALUE } from "../.const";
 
 export function addArticle(article: IArticle) {
   const action: ArticleAction = {
-    type: actionTypes.ADD_ARTICLE,
+    type: ActionTypes.ADD_ARTICLE,
     article,
   };
 
@@ -12,7 +12,7 @@ export function addArticle(article: IArticle) {
 
 export function editArticle(article: IArticle) {
   const action: ArticleAction = {
-    type: actionTypes.EDIT_ARTICLE,
+    type: ActionTypes.EDIT_ARTICLE,
     article,
   };
 
@@ -21,7 +21,7 @@ export function editArticle(article: IArticle) {
 
 export function removeArticle(article: IArticle) {
   const action: ArticleAction = {
-    type: actionTypes.REMOVE_ARTICLE,
+    type: ActionTypes.REMOVE_ARTICLE,
     article,
   };
 

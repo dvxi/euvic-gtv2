@@ -11,7 +11,7 @@ const NotFound = () => {
       <Header className="header">
         <h1>{t("notFound.title")}</h1>
       </Header>
-      <Content className="content">
+      <Content className="content text-center">
         <h1>{t("notFound.header")}</h1>
       </Content>
       <Footer className="text-center">Euvic 2023 - [GTv2]</Footer>
