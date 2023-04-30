@@ -2,9 +2,8 @@ import { Link } from "react-router-dom";
 import { Menu, Select } from "antd";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-
+import { LANGUAGE_OPTIONS } from "../../.const";
 import { Layout } from "antd";
-
 const { Header } = Layout;
 
 const MenuHeader = () => {
@@ -27,21 +26,14 @@ const MenuHeader = () => {
         <Menu.Item key="3">
           <Link to="/about">{t("menu.view")}</Link>
         </Menu.Item>
+        <Menu.Item>
+          <Select
+            defaultValue="en"
+            onChange={(e) => handleChange(e)}
+            options={LANGUAGE_OPTIONS}
+          />
+        </Menu.Item>
       </Menu>
-      <Select
-        defaultValue="en"
-        onChange={(e) => handleChange(e)}
-        options={[
-          {
-            value: "en",
-            label: "English",
-          },
-          {
-            value: "pl",
-            label: "Polski",
-          },
-        ]}
-      />
     </Header>
   );
 };

@@ -1,0 +1,41 @@
+{
+  "translation": {
+    "menu": {
+      "home": "Home",
+      "main": "Main",
+      "view": "View Data"
+    },
+    "title": "Euvic",
+    "landing": {
+      "title": "Welcome to Euvic"
+    },
+    "main": {
+      "title": "Main Page",
+      "header": "Manage your data",
+      "addArticle": "Add Data",
+      "table": {
+        "name": "Name",
+        "age": "Age",
+        "birthdate": "Birthdate",
+        "description": "Description",
+        "action": "Action"
+      }
+    },
+    "form": {
+      "name": "Name",
+      "age": "Age",
+      "birthdate": "Birthdate",
+      "description": "Description"
+    },
+    "button": {
+      "deleteAll": "Delete All",
+      "addData": "Add Data",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "view": {
+      "title": "View Data",
+      "header": "Explore your data"
+    }
+  }
+}

@@ -1,5 +1,6 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Form, DatePicker, Input, InputNumber, Button } from "antd";
+import { useTranslation } from "react-i18next";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -23,7 +24,6 @@ export const AddArticle: React.FC<Props> = ({
   changeArticle,
   editedArtice,
 }) => {
-  // const [article, setArticle] = React.useState<IArticle | {}>();
   const formik = useFormik({
     initialValues: editedArtice || {
       id: -1,
@@ -39,7 +39,7 @@ export const AddArticle: React.FC<Props> = ({
     },
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (editedArtice !== null) {
       formik.setFieldValue("id", editedArtice.id);
       formik.setFieldValue("name", editedArtice.name);
@@ -52,105 +52,71 @@ export const AddArticle: React.FC<Props> = ({
     }
   }, [editedArtice]);
 
-  // if (editedArtice !== null) {
-  //   setArticle(editedArtice);
-  // }
-  // const handleArticleData = (e: React.FormEvent<HTMLInputElement>) => {
-  //   setArticle({
-  //     ...article,
-  //     [e.currentTarget.id]: e.currentTarget.value,
-  //   });
-  // };
-
-  // const addNewArticle = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   saveArticle(article);
-  // };
+  const { t } = useTranslation();
 
   return (
-    <>
-      <Form
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 14 }}
-        layout="horizontal"
-        onSubmitCapture={formik.handleSubmit}
-      >
-        <Form.Item label="Name">
-          <Input
-            id="name"
-            placeholder="Name"
-            onChange={formik.handleChange}
-            value={formik.values.name}
-          />
-          {formik.touched.name && formik.errors.name ? (
-            <div className="error">{formik.errors.name}</div>
-          ) : null}
-        </Form.Item>
-        <Form.Item label="Age">
-          <InputNumber
-            id="age"
-            placeholder="Age"
-            onChange={(value) => formik.setFieldValue("age", value)}
-            value={formik.values.age}
-          />
-          {formik.touched.age && formik.errors.age ? (
-            <div className="error">{formik.errors.age}</div>
-          ) : null}
-        </Form.Item>
-        <Form.Item label="Birthdate">
-          <DatePicker
-            id="birthdate"
-            placeholder="Birthdate"
-            onChange={(date, dateString) =>
-              formik.setFieldValue("birthdate", dateString)
-            }
-            value={
-              dayjs(formik.values.birthdate).isValid()
-                ? dayjs(formik.values.birthdate)
-                : undefined
-            }
-            // value={dayjs(formik.values.birthdate)}
-          />
-          {formik.touched.birthdate && formik.errors.birthdate ? (
-            <div className="error">{formik.errors.birthdate}</div>
-          ) : null}
-        </Form.Item>
-        <Form.Item label="Description">
-          <Input
-            id="description"
-            placeholder="Description"
-            onChange={formik.handleChange}
-            value={formik.values.description}
-          />
-          {formik.touched.description && formik.errors.description ? (
-            <div className="error">{formik.errors.description}</div>
-          ) : null}
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" disabled={!formik.isValid}>
-            Add article
-          </Button>
-        </Form.Item>
-      </Form>
-
-      {/* <form onSubmit={addNewArticle} className="Add-article">
-        <input
-          type="text"
-          id="title"
-          placeholder="Title"
-          onChange={handleArticleData}
+    <Form
+      labelCol={{ span: 4 }}
+      wrapperCol={{ span: 14 }}
+      layout="horizontal"
+      onSubmitCapture={formik.handleSubmit}
+    >
+      <Form.Item label={t("form.name")}>
+        <Input
+          id="name"
+          placeholder={t("form.name") || "name"}
+          onChange={formik.handleChange}
+          value={formik.values.name}
         />
-        <input
-          type="text"
-          id="body"
-          placeholder="Description"
-          onChange={handleArticleData}
+        {formik.touched.name && formik.errors.name ? (
+          <div className="error">{formik.errors.name}</div>
+        ) : null}
+      </Form.Item>
+      <Form.Item label={t("form.age")}>
+        <InputNumber
+          id="age"
+          placeholder={t("form.name") || "Age"}
+          onChange={(value) => formik.setFieldValue("age", value)}
+          value={formik.values.age}
         />
-        <button disabled={article === undefined ? true : false}>
-          Add article
-        </button>
-      </form> */}
-    </>
+        {formik.touched.age && formik.errors.age ? (
+          <div className="error">{formik.errors.age}</div>
+        ) : null}
+      </Form.Item>
+      <Form.Item label={t("form.birthdate")}>
+        <DatePicker
+          id="birthdate"
+          placeholder={t("form.birthdate") || "birthdate"}
+          onChange={(date, dateString) =>
+            formik.setFieldValue("birthdate", dateString)
+          }
+          value={
+            dayjs(formik.values.birthdate).isValid()
+              ? dayjs(formik.values.birthdate)
+              : undefined
+          }
+        />
+        {formik.touched.birthdate && formik.errors.birthdate ? (
+          <div className="error">{formik.errors.birthdate}</div>
+        ) : null}
+      </Form.Item>
+      <Form.Item label={t("form.description")}>
+        <Input
+          id="description"
+          placeholder={t("form.description") || "description"}
+          onChange={formik.handleChange}
+          value={formik.values.description}
+        />
+        {formik.touched.description && formik.errors.description ? (
+          <div className="error">{formik.errors.description}</div>
+        ) : null}
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit" disabled={!formik.isValid}>
+          {t("button.addData")}
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 

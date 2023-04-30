@@ -1,0 +1,41 @@
+{
+  "translation": {
+    "menu": {
+      "home": "Strona Główna",
+      "main": "Panel uzytkownika",
+      "view": "Przegladarka danych"
+    },
+    "title": "Euvic",
+    "landing": {
+      "title": "Witaj w Euvic"
+    },
+    "main": {
+      "title": "Panel",
+      "header": "Zarzadzaj danymi",
+      "addArticle": "Dodaj dane",
+      "table": {
+        "name": "Imie",
+        "age": "Wiek",
+        "birthdate": "Data urodzenia",
+        "description": "Opis",
+        "action": "Akcja"
+      }
+    },
+    "form": {
+      "name": "Imie",
+      "age": "Wiek",
+      "birthdate": "Data urodzenia",
+      "description": "Opis"
+    },
+    "button": {
+      "deleteAll": "Usun wszystkie",
+      "addData": "Dodaj dane",
+      "edit": "Edytuj",
+      "delete": "Usun"
+    },
+    "view": {
+      "title": "Przegladarka danych",
+      "header": "Przegladaj dane"
+    }
+  }
+}

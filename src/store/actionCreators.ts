@@ -1,4 +1,5 @@
 import * as actionTypes from "./actionTypes";
+import { TIMEOUT_VALUE } from "../.const";
 
 export function addArticle(article: IArticle) {
   const action: ArticleAction = {
@@ -31,6 +32,6 @@ export function simulateHttpRequest(action: ArticleAction) {
   return (dispatch: DispatchType) => {
     setTimeout(() => {
       dispatch(action);
-    }, 500);
+    }, TIMEOUT_VALUE);
   };
 }

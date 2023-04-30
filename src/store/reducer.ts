@@ -1,23 +1,7 @@
 import * as actionTypes from "./actionTypes";
+import { INITIAL_STATE } from "../.const";
 
-const initialState: ArticleState = {
-  articles: [
-    {
-      id: 1,
-      name: "Pierwszy",
-      age: 12,
-      birthdate: "2020-01-01",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 2,
-      name: "Drugi",
-      age: 20,
-      birthdate: "2002-11-21",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-  ],
-};
+const initialState: ArticleState = INITIAL_STATE;
 
 const reducer = (
   state: ArticleState = initialState,
