@@ -8,8 +8,6 @@ This web application allows you to input and visualize data using a table and a 
 - [Usage](#usage)
 - [Technologies](#technologies)
 - [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
