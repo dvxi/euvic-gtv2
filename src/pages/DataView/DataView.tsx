@@ -2,7 +2,7 @@ import { Layout, Col, Row, Card } from "antd";
 import { useSelector, shallowEqual } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-const { Content, Footer } = Layout;
+const { Header, Content, Footer } = Layout;
 
 const DataView = () => {
   const articles: readonly IArticle[] = useSelector(
@@ -14,19 +14,24 @@ const DataView = () => {
 
   return (
     <Layout className="site-layout">
+      <Header className="header">
+        <h1>{t("view.title")}</h1>
+      </Header>
       <Content className="content">
         <h1>{t("view.header")}</h1>
         <Row gutter={[16, 24]}>
           {articles.map((article: IArticle) => (
             <Col span={6}>
               <Card title={article.name}>
-                <p>
-                  {t("form.age")}: {article.age}
-                </p>
-                <p>
-                  {t("form.birthdate")}: {article.birthdate}
-                </p>
-                <p>{article.description}</p>
+                {Object.keys(article).map(
+                  (key) =>
+                    key !== "id" &&
+                    key !== "name" && (
+                      <p>
+                        {t(`form.${key}`)}: {(article as any)[key]}
+                      </p>
+                    )
+                )}
               </Card>
             </Col>
           ))}
